@@ -1,0 +1,285 @@
+<template>
+  <div>
+    <header>
+      <div class="headerContainer">
+        <div class="initials">
+          <p><span>A</span> <span>S</span></p>
+        </div>
+        <button class="menuBtn" @click="toggleNavMenu(!isNavMenuShowing)"><span></span> <span></span> <span></span></button>
+      </div>
+
+      <nav v-show="isNavMenuShowing" class="navMenu">
+        <ul class="linkList">
+          <li>
+            <nuxt-link to="/">Home</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/about">About Me</nuxt-link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <Nuxt />
+    </main>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from "vue"
+
+export default Vue.extend({
+  data() {
+    return {
+      isNavMenuShowing: false,
+    }
+  },
+  methods: {
+    toggleNavMenu(status: boolean) {
+      const navMenu = document.querySelector(".navMenu")
+      const menuBtn = document.querySelector(".menuBtn")
+      menuBtn!.classList.toggle("open")
+      if (status) {
+        document.body.style.position = "fixed"
+        document.body.style.overflowY = "hidden"
+        navMenu!.classList.remove("hideMenu")
+        navMenu!.classList.add("showMenu")
+        this.isNavMenuShowing = status
+      } else {
+        document.body.style.position = "static"
+        document.body.style.overflowY = "auto"
+        navMenu!.classList.remove("showMenu")
+        navMenu!.classList.add("hideMenu")
+
+        setTimeout(() => {
+          this.isNavMenuShowing = status
+        }, Math.floor(300))
+      }
+    },
+  },
+})
+</script>
+
+<style lang="scss">
+$--navMenuOpacity: 0.98;
+$--initialsFS: (
+  null: 2.8rem,
+  $mobile: 3rem,
+  $tablet: 3.4rem,
+  $tablet-landscape: 3.6rem,
+);
+
+header {
+  margin: 0 auto;
+  width: 100%;
+  @include height($--headerHeight);
+}
+
+.headerContainer {
+  padding: 0.2rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid #e1e1e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  @include height($--headerHeight);
+  z-index: 100;
+  @include tablet {
+    padding: 0.3rem 3rem;
+  }
+  @include tablet-landscape {
+    padding: 0.5rem 10rem;
+  }
+}
+
+.initials {
+  color: $PrimaryFS;
+
+  span {
+    @include font-size($--initialsFS);
+    font-weight: 800;
+
+    &:first-of-type {
+    }
+
+    &:last-of-type {
+      background-color: $PrimaryFS;
+      color: white;
+      padding: 0.1rem 0.8rem;
+      border-radius: 3px;
+    }
+  }
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  padding: 0;
+  @include tablet {
+    height: 35px;
+    width: 40px;
+  }
+  @include tablet-landscape {
+    width: 50px;
+  }
+
+  &.open {
+    span {
+      &:first-child {
+        top: 45%;
+        transform: rotate(135deg);
+        left: 10%;
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        display: none;
+      }
+
+      &:nth-child(3) {
+        top: 45%;
+        left: 10%;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+
+  span {
+    background-color: $DarkBlue;
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 80%;
+    border-radius: 9px;
+    opacity: 1;
+    left: 50%;
+    transform: rotate(0deg) translateX(-50%);
+    transition: 0.25s ease-in-out;
+
+    &:first-child {
+      top: 5px;
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:nth-child(3) {
+      bottom: 5px;
+    }
+  }
+}
+
+.navMenu {
+  position: fixed;
+  @include dynamicMixin(top, $--headerHeight);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(5, 29, 58, 1);
+  z-index: 100;
+
+  &.showMenu {
+    animation: showMenu 0.3s linear forwards;
+
+    .linkList {
+      animation: showLinkList 0.2s linear forwards;
+    }
+  }
+
+  &.hideMenu {
+    animation: hideMenu 0.3s linear forwards;
+
+    .linkList {
+      animation: hideLinkList 0.2s linear forwards;
+    }
+  }
+
+  .linkList {
+    @include padding($--basePadding);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+    }
+
+    a {
+      display: block;
+      padding: 0.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      @include dynamicMixin(line-height, $--navMenuLH);
+      @include dynamicMixin(font-size, $--navMenuLinks);
+      color: #fff;
+      border: none;
+      background-color: transparent;
+      text-align: left;
+    }
+  }
+}
+
+@keyframes showLinkList {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showMenu {
+  0% {
+    max-height: 0;
+  }
+
+  100% {
+    max-height: 100%;
+    opacity: $--navMenuOpacity;
+  }
+}
+
+@keyframes hideLinkList {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hideMenu {
+  0% {
+    max-height: 100%;
+    opacity: $--navMenuOpacity;
+  }
+
+  100% {
+    max-height: 0;
+  }
+}
+</style>

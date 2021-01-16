@@ -1,0 +1,11 @@
+@mixin height($height-map) {
+  @each $height-breakpoint, $height-size in $height-map {
+    @if $height-breakpoint == null {
+      height: $height-size;
+    } @else {
+      @media screen and (min-width: $height-breakpoint * 1px) {
+        height: $height-size;
+      }
+    }
+  }
+}

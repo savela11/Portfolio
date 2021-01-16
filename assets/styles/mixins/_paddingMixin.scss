@@ -1,0 +1,11 @@
+@mixin padding($p-map ) {
+  @each $p-breakpoint, $p-size in $p-map {
+    @if $p-breakpoint == null {
+      padding: $p-size;
+    } @else {
+      @media screen and (min-width: $p-breakpoint * 1px) {
+        padding: $p-size;
+      }
+    }
+  }
+}

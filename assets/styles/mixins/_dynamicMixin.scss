@@ -1,0 +1,16 @@
+@mixin dynamicMixin($prop, $val-map, $setVal:  null) {
+  @if $val-map == null and $setVal != null{
+    #{$prop}: $setVal;
+  } @else {
+    @each $val-breakpoint, $val-size in $val-map {
+      @if $val-breakpoint == null {
+        #{$prop}: $val-size;
+      } @else {
+        @media screen and (min-width: $val-breakpoint * 1px) {
+          #{$prop}: $val-size;
+        }
+      }
+    }
+  }
+
+}
