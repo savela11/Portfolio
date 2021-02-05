@@ -1,0 +1,237 @@
+@use '../global' as g;
+
+$--headerHeight: (
+  null: 60px,
+  g.$tablet: 80px,
+  g.$tablet-landscape: 100px,
+);
+$--initialsFS: (
+  null: 2.8rem,
+  g.$mobile: 3rem,
+  g.$tablet: 3.4rem,
+  g.$tablet-landscape: 3.6rem,
+);
+$--navMenuOpacity: 0.98;
+$--navMenuLinks: (
+  null: 2.4rem,
+  g.$mobile: 2.6rem,
+  g.$tablet: 2.8rem,
+  g.$tablet-landscape: 3rem,
+);
+$--navMenuLH: (
+  null: 2,
+  g.$mobile: 2.1,
+  g.$tablet: 2.2,
+);
+header {
+  margin: 0 auto;
+  width: 100%;
+  @include g.dynamicMixin("height", $--headerHeight);
+}
+
+.headerContainer {
+  padding: 0.2rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid #e1e1e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  @include g.dynamicMixin("height", $--headerHeight);
+  z-index: 100;
+  @include g.tablet {
+    padding: 0.3rem 3rem;
+  }
+  @include g.tablet-landscape {
+    padding: 0.5rem 10rem;
+  }
+}
+
+.initials {
+  color: g.$PrimaryFS;
+
+  span {
+    @include g.dynamicMixin("font-size", $--initialsFS);
+    font-weight: 800;
+
+    &:first-of-type {
+    }
+
+    &:last-of-type {
+      background-color: g.$PrimaryFS;
+      color: white;
+      padding: 0.1rem 0.8rem;
+      border-radius: 3px;
+    }
+  }
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  padding: 0;
+  @include g.tablet {
+    height: 35px;
+    width: 40px;
+  }
+  @include g.tablet-landscape {
+    width: 50px;
+  }
+
+  &.open {
+    span {
+      &:first-child {
+        top: 45%;
+        transform: rotate(135deg);
+        left: 10%;
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        display: none;
+      }
+
+      &:nth-child(3) {
+        top: 45%;
+        left: 10%;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+
+  span {
+    background-color: g.$DarkBlue;
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 80%;
+    border-radius: 9px;
+    opacity: 1;
+    left: 50%;
+    transform: rotate(0deg) translateX(-50%);
+    transition: 0.25s ease-in-out;
+
+    &:first-child {
+      top: 5px;
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:nth-child(3) {
+      bottom: 5px;
+    }
+  }
+}
+
+.navMenu {
+  position: fixed;
+  @include g.dynamicMixin(top, $--headerHeight);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(5, 29, 58, 1);
+  z-index: 100;
+
+  &.showMenu {
+    animation: showMenu 0.3s linear forwards;
+
+    .linkList {
+      animation: showLinkList 0.2s linear forwards;
+    }
+  }
+
+  &.hideMenu {
+    animation: hideMenu 0.3s linear forwards;
+
+    .linkList {
+      animation: hideLinkList 0.2s linear forwards;
+    }
+  }
+
+  .linkList {
+    @include g.dynamicMixin("padding", g.$viewPageBasePadding);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+    }
+
+    a {
+      display: block;
+      padding: 0.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      @include g.dynamicMixin(line-height, $--navMenuLH);
+      @include g.dynamicMixin(font-size, $--navMenuLinks);
+      color: #fff;
+      border: none;
+      background-color: transparent;
+      text-align: left;
+    }
+  }
+}
+
+@keyframes showLinkList {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showMenu {
+  0% {
+    max-height: 0;
+  }
+
+  100% {
+    max-height: 100%;
+    opacity: $--navMenuOpacity;
+  }
+}
+
+@keyframes hideLinkList {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hideMenu {
+  0% {
+    max-height: 100%;
+    opacity: $--navMenuOpacity;
+  }
+
+  100% {
+    max-height: 0;
+  }
+}

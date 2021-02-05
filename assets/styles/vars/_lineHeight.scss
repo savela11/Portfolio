@@ -1,4 +1,7 @@
-$--tinyLH: (
+@use "../mixins/mediaQueries" as *;
+
+
+$tinyLH: (
   null:1.1,
   $mobile: 1.2,
   $tablet: 1.3,
@@ -7,7 +10,7 @@ $--tinyLH: (
   $desktop: 1.6,
   $desktopLarge: 1.7
 );
-$--xsLH: (
+$xsLH: (
   null:1.2,
   $mobile:1.3,
   $tablet: 1.4,
@@ -16,7 +19,7 @@ $--xsLH: (
   $desktop: 1.7,
   $desktopLarge: 1.8
 );
-$--smLH: (
+$smLH: (
   null:1.4,
   $mobile:1.5,
   $tablet: 1.8,
@@ -25,7 +28,7 @@ $--smLH: (
   $desktop: 1.8,
   $desktopLarge: 1.9
 );
-$--mdLH: (
+$mdLH: (
   null:1.4,
   $mobile:1.5,
   $tablet: 1.6,
@@ -34,8 +37,7 @@ $--mdLH: (
   $desktop: 1.9,
   $desktopLarge: 2
 );
-
-$--lgLH: (
+$lgLH: (
   null:1.5,
   $mobile:1.6,
   $tablet: 1.7,
@@ -44,8 +46,7 @@ $--lgLH: (
   $desktop: 2,
   $desktopLarge: 2.1
 );
-
-$--xlLH: (
+$xlLH: (
   null:1.6,
   $mobile:1.7,
   $tablet: 1.8,
@@ -55,30 +56,6 @@ $--xlLH: (
   $desktopLarge: 2.2
 );
 
-$--navMenuLH: (
-  null: 2,
-  $mobile: 2.1,
-  $tablet: 2.2
-);
 
 
-.text {
-  &-lh {
-    &-tiny {
-      @include line-height($--tinyLH);
-    }
 
-    &-xs {
-      @include line-height($--xsLH);
-    }
-
-    &-sm {
-      @include line-height($--smLH);
-    }
-
-    &-md {
-      @include line-height($--mdLH);
-    }
-  }
-
-}

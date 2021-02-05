@@ -1,328 +1,74 @@
-$--tinyFS: (
-  null: 1.2rem,
-  $mobile:1.3rem,
-  $tablet:1.4rem,
-  $tablet-landscape:1.5rem,
-  $desktopSmall:1.6rem,
-  $desktop:1.7rem,
-  $desktopLarge:1.8rem
-);
-
-$--smFS: (
-  null: 1.3rem,
-  $mobile:1.4rem,
-  $tablet:1.5rem,
-  $tablet-landscape:1.6rem,
-  $desktopSmall:1.7rem,
-  $desktop:1.8rem,
-  $desktopLarge: 1.9rem
-);
-
-$--baseFS: (
-  null: 1.4rem,
-  $mobile:1.5rem,
-  $tablet:1.6rem,
-  $tablet-landscape:1.7rem,
-  $desktopSmall:1.8rem,
-  $desktop:1.9rem,
-  $desktopLarge: 2rem
-);
-
-$--mdFS: (
-  null: 1.5rem,
-  $mobile:1.6rem,
-  $tablet:1.7rem,
-  $tablet-landscape:1.8rem,
-  $desktopSmall:1.9rem,
-  $desktop:2rem,
-  $desktopLarge: 2.1rem
-);
-
-$--lgFS: (
-  null: 1.6rem,
-  $mobile:1.7rem,
-  $tablet:1.8rem,
-  $tablet-landscape:1.9rem,
-  $desktopSmall:2rem,
-  $desktop:2.1rem,
-  $desktopLarge: 2.2rem
-);
-
-$--xlFS: (
-  null: 1.7rem,
-  $mobile:1.8rem,
-  $tablet:1.9rem,
-  $tablet-landscape:2rem,
-  $desktopSmall:2.1rem,
-  $desktop:2.2rem,
-  $desktopLarge: 2.3rem
-);
-
-$--xl2FS: (
-  null: 1.8rem,
-  $mobile:1.9rem,
-  $tablet:2rem,
-  $tablet-landscape:2.1rem,
-  $desktopSmall:2.2rem,
-  $desktop:2.3rem,
-  $desktopLarge: 2.4rem
-);
-
-$--xl3FS: (
-  null: 1.9rem,
-  $mobile:2rem,
-  $tablet:2.1rem,
-  $tablet-landscape:2.2rem,
-  $desktopSmall:2.3rem,
-  $desktop:2.4rem,
-  $desktopLarge: 2.5rem
-);
-
-$--xl4FS: (
-  null: 2rem,
-  $mobile:2.1rem,
-  $tablet:2.2rem,
-  $tablet-landscape:2.3rem,
-  $desktopSmall:2.4rem,
-  $desktop:2.5rem,
-  $desktopLarge: 2.6rem
-);
-
-$--titleFS: (
+@use "../mixins/mediaQueries" as *;
+$title: (
   null: 2.8rem,
-  $mobile:3.2rem,
+  $mobile: 3.2rem,
   $tablet: 4rem,
   $tablet-landscape: 4.2rem,
   $desktopSmall: 4.6rem,
   $desktop: 4.8rem,
-  $desktopLarge: 5.2rem
+  $desktopLarge: 5.2rem,
+);
+$sectionTitle: ();
+
+$sectionParagraph: (
+  font-size: (
+    null: 1.4rem,
+    $mobile: 1.5rem,
+    $tablet: 1.6rem,
+    $tablet-landscape: 1.7rem,
+    $desktopSmall: 1.8rem,
+    $desktop: 1.9rem,
+    $desktopLarge: 2rem,
+  ),
+  line-height: (
+    null: 1.4,
+    $mobile: 1.5,
+    $tablet: 1.6,
+    $tablet-landscape: 1.7,
+    $desktopSmall: 1.8,
+    $desktop: 1.9,
+    $desktopLarge: 2,
+  ),
 );
 
-$--sectionTitleFS: (
-  null: 2.6rem,
-  $mobile: 2.8rem,
-  $tablet: 3rem,
-  $tablet-landscape: 3.2rem,
-  $desktopSmall: 3.6rem,
-  $desktop: 3.8rem,
-  $desktopLarge: 4.2rem
+$paragraph: (
+  null: 1.4rem,
+  $mobile: 1.5rem,
+  $tablet: 1.6rem,
+  $tablet-landscape: 1.7rem,
+  $desktopSmall: 1.8rem,
+  $desktop: 1.9rem,
+  $desktopLarge: 2.2rem,
 );
 
-$--navMenuLinks: (
-  null: 2.4rem,
-  $mobile: 2.6rem,
-  $tablet: 2.8rem,
-  $tablet-landscape: 3rem
+
+
+$tinyFS: (
+  null: 1.2rem,
+  $mobile: 1.3rem,
+  $tablet: 1.4rem,
+  $tablet-landscape: 1.5rem,
+  $desktopSmall: 1.6rem,
+  $desktop: 1.7rem,
+  $desktopLarge: 1.8rem,
 );
 
-.text {
-  line-height: 1.2;
+//$--smFS: (
+//  null: 1.3rem,
+//  mediaQueries.$mobile:1.4rem,
+//  mediaQueries.$tablet:1.5rem,
+//  mediaQueries.$tablet-landscape:1.6rem,
+//  mediaQueries.$desktopSmall:1.7rem,
+//  mediaQueries.$desktop:1.8rem,
+//  mediaQueries.$desktopLarge: 1.9rem
+//);
 
-  &-tiny {
-    @include font-size($--tinyFS);
-  }
-
-  &-sm {
-    @include font-size($--smFS);
-  }
-
-  &-base {
-    @include font-size($--baseFS);
-  }
-
-  &-md {
-    @include font-size($--mdFS);
-  }
-
-  &-lg {
-    @include font-size($--lgFS);
-  }
-
-  &-xl {
-    @include font-size($--xlFS);
-  }
-
-  &-xl2 {
-    @include font-size($--xl2FS);
-  }
-
-  &-xl3 {
-    @include font-size($--xl3FS);
-  }
-
-  &-xl4 {
-    @include font-size($--xl4FS);
-  }
-
-  &-title {
-    @include font-size($--titleFS);
-  }
-}
-
-.text {
-  //375px
-  &-vpSM {
-    @include mobile {
-
-      &-tiny {
-        @include font-size($--tinyFS);
-      }
-
-      &-sm {
-        @include font-size($--smFS);
-      }
-
-      &-base {
-        @include font-size($--baseFS);
-      }
-
-      &-md {
-        @include font-size($--mdFS);
-      }
-
-      &-lg {
-        @include font-size($--lgFS);
-      }
-
-      &-xl {
-        @include font-size($--xlFS);
-      }
-
-      &-xl2 {
-        @include font-size($--xl2FS);
-      }
-
-      &-xl3 {
-        @include font-size($--xl3FS);
-      }
-      &-xl4 {
-        @include font-size($--xl4FS);
-      }
-    }
-  }
-
-  //768px
-  &-vpMD {
-    @include tablet {
-
-      &-tiny {
-        @include font-size($--tinyFS);
-      }
-
-      &-sm {
-        @include font-size($--smFS);
-      }
-
-      &-base {
-        @include font-size($--baseFS);
-      }
-
-      &-md {
-        @include font-size($--mdFS);
-      }
-
-      &-lg {
-        @include font-size($--lgFS);
-      }
-
-      &-xl {
-        @include font-size($--xlFS);
-      }
-
-      &-xl2 {
-        @include font-size($--xl2FS);
-      }
-
-      &-xl3 {
-        @include font-size($--xl3FS);
-      }
-      &-xl4 {
-        @include font-size($--xl4FS);
-      }
-    }
-  }
-
-  //1024px
-  &-vpLG {
-    @include tablet-landscape {
-
-      &-tiny {
-        @include font-size($--tinyFS);
-      }
-
-      &-sm {
-        @include font-size($--smFS);
-      }
-
-      &-base {
-        @include font-size($--baseFS);
-      }
-
-      &-md {
-        @include font-size($--mdFS);
-      }
-
-      &-lg {
-        @include font-size($--lgFS);
-      }
-
-      &-xl {
-        @include font-size($--xlFS);
-      }
-
-      &-xl2 {
-        @include font-size($--xl2FS);
-      }
-
-      &-xl3 {
-        @include font-size($--xl3FS);
-      }
-      &-xl4 {
-        @include font-size($--xl4FS);
-      }
-    }
-
-  }
-
-  //1440px
-  &-vpXL {
-    @include desktop {
-
-      &-tiny {
-        @include font-size($--tinyFS);
-      }
-
-      &-sm {
-        @include font-size($--smFS);
-      }
-
-      &-base {
-        @include font-size($--baseFS);
-      }
-
-      &-md {
-        @include font-size($--mdFS);
-      }
-
-      &-lg {
-        @include font-size($--lgFS);
-      }
-
-      &-xl {
-        @include font-size($--xlFS);
-      }
-
-      &-xl2 {
-        @include font-size($--xl2FS);
-      }
-
-
-      &-xl3 {
-        @include font-size($--xl3FS);
-      }
-      &-xl4 {
-        @include font-size($--xl4FS);
-      }
-    }
-  }
-}
+$baseFS: (
+  null: 1.4rem,
+  $mobile: 1.5rem,
+  $tablet: 1.6rem,
+  $tablet-landscape: 1.7rem,
+  $desktopSmall: 1.8rem,
+  $desktop: 1.9rem,
+  $desktopLarge: 2rem,
+);

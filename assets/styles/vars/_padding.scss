@@ -1,4 +1,6 @@
-$--basePadding: (
+@use '../mixins/mediaQueries' as *;
+
+$viewPageBasePadding: (
   null: 5rem 3rem,
   $mobile: 8rem 4rem,
   $tablet: 8rem,
