@@ -21,7 +21,6 @@
         programming in general. It all really started for me when I was about 13 years old. From making IRC scripts, console
         scripts in video games to GeoCities websites with friends.
       </p>
-
       <p>
         Outside of all things technology.... I enjoy mountain biking, running with my dog Maverick (he's the Aussie Doodle on
         the front page) and playing pretty much any sport for the sake of competition.
