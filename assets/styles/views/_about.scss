@@ -1,0 +1,23 @@
+@use '../global' as g;
+
+.top {
+  .imgContainer {
+    &--about {
+      img {
+        @include g.tablet-landscape {
+          object-position: center -75px;
+        }
+      }
+    }
+  }
+}
+
+.section {
+  position: relative;
+  @include g.dynamicMixin("padding", g.$viewPageBasePadding);
+  &__text {
+    &-para {
+      @include g.printStyles(g.$sectionParagraph);
+    }
+  }
+}

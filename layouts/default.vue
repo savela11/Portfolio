@@ -10,10 +10,10 @@
 
       <nav v-show="isNavMenuShowing" class="navMenu">
         <ul class="linkList">
-          <li>
+          <li @click.prevent.stop="toggleNavMenu(false)">
             <nuxt-link to="/">Home</nuxt-link>
           </li>
-          <li>
+          <li @click.prevent.stop="toggleNavMenu(false)">
             <nuxt-link to="/about">About Me</nuxt-link>
           </li>
         </ul>

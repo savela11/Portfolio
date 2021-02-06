@@ -1,84 +1,16 @@
 @use '../global' as g;
 
 .top {
-  height: 400px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  @include g.dynamicMixin("padding", g.$viewPageBasePadding);
-  @include g.mobile {
-    height: 550px;
-  }
-
-  @include g.desktopSmall {
-    height: 700px;
-  }
-  @include g.desktopLarge {
-    height: 850px;
-  }
-
   .imgContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    &:before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      content: "";
-      background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.6)));
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7));
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      @include g.desktopLarge {
-        object-position: 100% -950px;
+    &--home {
+      img {
+        @include g.tablet-landscape {
+          object-position: center -400px;
+        }
       }
     }
   }
-
-  .inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  h2 {
-    color: white;
-    @include g.dynamicMixin("font-size", g.$title);
-    letter-spacing: -0.46px;
-    width: 80%;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-    @include g.desktopSmall {
-      width: auto;
-      margin-bottom: 0;
-    }
-  }
-
-  p {
-    color: white;
-    @include g.dynamicMixin("font-size", g.$paragraph);
-    line-height: 1.5;
-    letter-spacing: 0;
-    font-weight: 600;
-    @include g.desktop {
-      line-height: 1.8;
-    }
-  }
 }
-
 section {
   margin: 0 0 5rem 0;
   @include g.dynamicMixin("padding", g.$viewPageBasePadding);
@@ -105,51 +37,30 @@ section {
   }
 }
 
-.aboutMe {
-  position: relative;
-
-  h2 {
-  }
-
-  p {
-    @include g.printStyles(g.$sectionParagraph);
-  }
-}
-
 .tools {
   position: relative;
   @include g.tablet {
     display: flex;
-    padding: 5rem 10rem;
+    padding: 5rem 8rem;
+  }
+  @include g.tablet-landscape {
   }
 }
 
+$tool: (
+  padding: (
+    null: 1rem 0,
+    g.$mobile: 2rem 0,
+    g.$tablet: 0,
+  ),
+  flex: (
+    g.$tablet: 0 0 50%,
+  ),
+);
 .tool {
-  padding: 1rem 0;
-  //padding: 0 3rem;
-  @include g.mobile {
-    padding: 2rem 0;
-  }
-  @include g.tablet {
-    //padding: 0 8rem;
-  }
-  @include g.tablet-landscape {
-    padding: 1rem 2rem;
-    flex: 0 0 50%;
-  }
-  @include g.desktopSmall {
-    padding: 1rem 3rem;
-  }
+  @include g.printStyles($tool);
 
-  &.design {
-    .inner {
-      border-top: 2px solid #051d3a;
-      @include g.tablet-landscape {
-        border-top: none;
-        border-bottom: 2px solid #051d3a;
-      }
-    }
-
+  &--design {
     &::after {
       content: "";
       position: absolute;
@@ -164,27 +75,51 @@ section {
     }
   }
 
-  &.frontEnd {
-    .inner {
-      border-bottom: 2px solid #051d3a;
-    }
+  &--frontEnd {
   }
 }
-
-$cardTitle: (
-  margin: 0,
+$card: (
+  position: relative,
+  transform: (
+    null: translateY(-75px),
+    g.$mobile: translateY(-120px),
+    g.$tablet: translateY(-80px),
+    g.$tablet-landscape: translateY(0),
+  ),
+  z-index: 1,
+  padding: (
+    g.$tablet: 0.5rem,
+  ),
+);
+$card__container: (
+  min-height: 300px,
+  position: relative,
+  background-color: white,
+  margin: 0 auto,
+  padding: (
+    null: 3rem 2rem,
+    g.$mobile: 3rem,
+    g.$tablet-landscape: 3rem,
+    g.$desktopSmall: 3rem,
+  ),
+  border-radius: 12px,
+);
+$card__text-title: (
+  margin: (
+    null: 0 0 0.5rem 0,
+  ),
   font-size: (
     null: 2rem,
     g.$mobile: 2.2rem,
   ),
 );
-$cardAltTitle: (
+$card__text-altTitle: (
   font-size: (
     null: 1.5rem,
     g.$mobile: 1.6rem,
   ),
 );
-$cardListItem: (
+$card__text-list-item: (
   font-size: (
     null: 1.3rem,
     g.$mobile: 1.4rem,
@@ -209,8 +144,7 @@ $cardListItem: (
   flex: 0 0 50%,
   padding: 0.2rem,
 );
-
-$cardPara: (
+$card__text-para: (
   margin: 0,
   font-size: (
     null: 1.2rem,
@@ -231,31 +165,29 @@ $cardPara: (
     g.$desktopLarge: 1.9,
   ),
 );
-
 .card {
-  background-color: white;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-  border-radius: 12px;
-  transform: translateY(-75px);
-  min-height: 300px;
-  z-index: 1;
-  position: relative;
-  @include g.mobile {
-    padding: 3rem;
-    transform: translateY(-120px);
-  }
-  @include g.tablet {
-    width: 80%;
-  }
+  @include g.printStyles($card);
 
-  @include g.tablet-landscape {
-    transform: translateY(0);
-    width: auto;
-    padding: 2rem;
-  }
-  @include g.desktopSmall {
-    padding: 3rem;
+  &__container {
+    @include g.printStyles($card__container);
+    &--design {
+      border-top: 3px solid g.$DarkBlue;
+      @include g.tablet {
+        border: none;
+      }
+      @include g.tablet-landscape {
+        border-bottom: 3px solid g.$DarkBlue;
+      }
+    }
+    &--frontEnd {
+      border-bottom: 3px solid g.$DarkBlue;
+      @include g.tablet {
+        border: none;
+      }
+      @include g.tablet-landscape {
+        border-bottom: 3px solid g.$DarkBlue;
+      }
+    }
   }
 
   &__top {
@@ -266,12 +198,6 @@ $cardPara: (
     @include g.tablet {
       padding: 0.5rem;
     }
-  }
-  &__title {
-    @include g.printStyles($cardTitle);
-  }
-  &__altTitle {
-    @include g.printStyles($cardAltTitle);
   }
 
   &__list {
@@ -284,10 +210,19 @@ $cardPara: (
       margin: 0;
     }
   }
-  &__item {
-    @include g.printStyles($cardListItem);
-  }
-  &__para {
-    @include g.printStyles($cardPara);
+
+  &__text {
+    &-title {
+      @include g.printStyles($card__text-title);
+    }
+    &-altTitle {
+      @include g.printStyles($card__text-altTitle);
+    }
+    &-para {
+      @include g.printStyles($card__text-para);
+    }
+    &-list-item {
+      @include g.printStyles($card__text-list-item);
+    }
   }
 }

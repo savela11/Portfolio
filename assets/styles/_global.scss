@@ -1,8 +1,7 @@
 @forward 'mixins/mediaQueries';
 @forward 'mixins/dynamicMixin';
 @forward 'mixins/printStylesMixin';
-
+@forward 'mixins/deepMergeMixin';
 @forward 'vars/colors';
 @forward 'vars/padding';
 @forward 'vars/font';
-@forward 'vars/lineHeight';
