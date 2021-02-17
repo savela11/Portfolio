@@ -31,8 +31,7 @@ header {
 
 .headerContainer {
   padding: 0.2rem 2rem;
-  background: #fff;
-  border-bottom: 1px solid #e1e1e1;
+  background-color: #051d3a;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -113,7 +112,7 @@ header {
   }
 
   span {
-    background-color: g.$DarkBlue;
+    background-color: white;
     display: block;
     position: absolute;
     height: 4px;

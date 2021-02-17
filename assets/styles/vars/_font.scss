@@ -1,4 +1,5 @@
 @use "../mixins/mediaQueries" as *;
+
 $title: (
   null: 2.8rem,
   $mobile: 3.2rem,
@@ -40,8 +41,6 @@ $paragraph: (
   $desktop: 1.9rem,
   $desktopLarge: 2.2rem,
 );
-
-
 
 $tinyFS: (
   null: 1.2rem,

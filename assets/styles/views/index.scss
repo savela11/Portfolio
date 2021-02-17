@@ -57,22 +57,23 @@ $tool: (
     g.$tablet: 0 0 50%,
   ),
 );
+
 .tool {
   @include g.printStyles($tool);
 
   &--design {
-    &::after {
-      content: "";
-      position: absolute;
-      background-color: #051d3a;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 400px;
-      @include g.tablet-landscape {
-        height: 250px;
-      }
-    }
+    //&::after {
+    //  content: "";
+    //  position: absolute;
+    //  background-color: #051d3a;
+    //  top: 0;
+    //  left: 0;
+    //  right: 0;
+    //  height: 400px;
+    //  @include g.tablet-landscape {
+    //    height: 250px;
+    //  }
+    //}
   }
 
   &--frontEnd {
@@ -171,21 +172,21 @@ $card__text-para: (
   &__container {
     @include g.printStyles($card__container);
     &--design {
-      border-top: 3px solid g.$DarkBlue;
+      border-top: 3px solid g.$Primary;
       @include g.tablet {
         border: none;
       }
       @include g.tablet-landscape {
-        border-bottom: 3px solid g.$DarkBlue;
+        border-bottom: 3px solid g.$Primary;
       }
     }
     &--frontEnd {
-      border-bottom: 3px solid g.$DarkBlue;
+      border-bottom: 3px solid g.$Primary;
       @include g.tablet {
         border: none;
       }
       @include g.tablet-landscape {
-        border-bottom: 3px solid g.$DarkBlue;
+        border-bottom: 3px solid g.$Primary;
       }
     }
   }
