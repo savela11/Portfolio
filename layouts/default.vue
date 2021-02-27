@@ -1,9 +1,14 @@
 <template>
   <div>
+    <div class="shape-container">
+      <img :src="require(`~/assets/images/rectangle.svg`)" alt="bottom shape" />
+    </div>
     <header>
       <div class="headerContainer">
-        <div class="initials">
-          <p><span>A</span> <span>S</span></p>
+        <div class="logo">
+          <div class="logo__container">
+            <p><span>A</span> <span>S</span></p>
+          </div>
         </div>
         <button class="menuBtn" @click="toggleNavMenu(!isNavMenuShowing)"><span></span> <span></span> <span></span></button>
       </div>
@@ -39,6 +44,7 @@ export default Vue.extend({
     toggleNavMenu(status: boolean) {
       const navMenu = document.querySelector(".navMenu")
       const menuBtn = document.querySelector(".menuBtn")
+      // const logoContainer = document.querySelector(".logo__container")
       menuBtn!.classList.toggle("open")
       if (status) {
         document.body.style.position = "fixed"

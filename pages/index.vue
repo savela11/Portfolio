@@ -1,9 +1,6 @@
 <template>
   <div class="home">
     <div class="top">
-      <div class="imgContainer imgContainer--home">
-        <img :src="require(`~/assets/images/topImg.jpg`)" alt="Laptop on a desk." />
-      </div>
       <div class="inner">
         <h2 class="top__text-title">Full-Stack Web Developer</h2>
         <p class="top__text-para">Responsive Web Design</p>
